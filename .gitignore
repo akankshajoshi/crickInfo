@@ -1,0 +1,6 @@
+*.pyc
+staticfiles/*
+*.db
+docs/_build
+.idea
+.DS_Store

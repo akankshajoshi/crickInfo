@@ -1,0 +1,76 @@
+{% extends 'matchInfo/base.html' %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+         <div class="col-sm-3 col-md-2">
+            <img src="{{ team.logo_uri.url }}" lenght="100" width="100">
+        </div>
+        <div class="col-sm-3 col-md-6">
+            <h1>{{ team.name }}</h1>
+        </div>
+
+    </div>
+
+    <div class="row mt-5 col-md-12">
+
+        {% for player in team_players %}
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <img src="{{ player.image_uri.url }}" length="40" width="150">
+                {{ player.first_name }}&nbsp;{{ player.last_name }}
+            </div>
+          </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row mt-2 col-md-12">
+         <h1>Upcoming matches</h1>
+    </div>
+
+    <div class="row mt-2 col-md-12">
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Match</th>
+            </tr>
+        </thead>
+            <tbody>
+                {% for match in future_matches %}
+                  <tr>
+                      <td>{{ match.match_date }}</td>
+                      <td>{{ match }}</td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-2 col-md-12">
+         <h1>Past matches</h1>
+    </div>
+
+    <div class="row mt-2 col-md-12">
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Match</th>
+                <th>Winner</th>
+            </tr>
+        </thead>
+            <tbody>
+                {% for match in past_matches %}
+                  <tr>
+                      <td>{{ match.match_date }}</td>
+                      <td>{{ match.name }}</td>
+                      <td>{{ match.winner }}</td>
+
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

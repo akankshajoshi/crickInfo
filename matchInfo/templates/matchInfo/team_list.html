@@ -1,0 +1,37 @@
+{% extends 'matchInfo/base.html' %}
+{% block body %}
+
+<div class="container">
+    {% if data_list|length == 0 %}
+        <div class="row">
+             No teams for now.
+        </div>
+    {% endif %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Team</th>
+                <th>Matches</th>
+                <th>Won</th>
+                <th>Lost</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+
+{% for item in data_list %}
+           <tr>
+               <td><a href="{{ item.id }}/"><img src="{{ item.path }}" lenght="40" width="40"></a></td>
+               <td><a href="{{ item.id }}/">{{ item.name }}</a></td>
+               <td>{{ item.total_matches }}</td>
+               <td>{{ item.won_matches }}</td>
+               <td>{{ item.loose_matches }}</td>
+               <td>{{ item.total_points }}</td>
+           </tr>
+
+{% endfor %}
+        </tbody>
+</table>
+</div>
+{% endblock %}
