@@ -1,7 +1,7 @@
 {% extends 'matchInfo/base.html' %}
 {% block body %}
 
-<div class="container">
+<div class="">
     {% if data_list|length == 0 %}
         <div class="row">
              No teams for now.
@@ -15,7 +15,7 @@
                 <th>Matches</th>
                 <th>Won</th>
                 <th>Lost</th>
-                <th>Points</th>
+
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,7 @@
                <td>{{ item.total_matches }}</td>
                <td>{{ item.won_matches }}</td>
                <td>{{ item.loose_matches }}</td>
-               <td>{{ item.total_points }}</td>
+
            </tr>
 
 {% endfor %}

@@ -1,0 +1,60 @@
+{% extends 'matchInfo/base.html' %}
+{% load my_tags %}
+{% block body %}
+<div class="">
+
+       <div class="row">
+             <div class="col-sm-3 col-md-2">
+                <img src="{{ player.image_uri.url }}" lenght="100" width="100">
+            </div>
+            <div class="col-sm-3 col-md-6">
+                <h1>{{ player.first_name }}&nbsp;{{ player.last_name }}</h1>
+            </div>
+
+        </div>
+       <h1></h1>
+       <br>
+      <!-- batting -->
+       <h3>Batting Statistics</h3>
+       <table class="table table-striped">
+          <thead>
+               <th>Matches</th>
+               <th>Balls Played</th>
+               <th>Runs</th>
+               <th>Strike Rate</th>
+               <th>50's</th>
+               <th>100's</th>
+           </thead>
+           <tbody>
+           <th>{{ batting_dict.matches }}</th>
+           <th>{{ batting_dict.balls_played }}</th>
+           <th>{{ batting_dict.runs }}</th>
+           <th>{{ batting_dict.strike_rate }}</th>
+           <th>{{ batting_dict.50s }}</th>
+           <th>{{ batting_dict.100s }}</th>
+
+           </tbody>
+       </table>
+
+       <!-- bowling -->
+       <h3>Bowling Statistics</h3>
+       <table class="table table-striped">
+          <thead>
+               <th>Matches</th>
+               <th>Overs</th>
+               <th>Runs Concieved</th>
+               <th>Wickets</th>
+               <th>Average</th>
+               <th>Strike Rate</th>
+           </thead>
+           <tbody>
+           <th>{{ bowling_dict.matches }}</th>
+           <th>{{ bowling_dict.overs }}</th>
+           <th>{{ bowling_dict.run_conceived }}</th>
+           <th>{{ bowling_dict.wickets }}</th>
+           <th>{{ bowling_dict.avg }}</th>
+           <th>{{ bowling_dict.strike_rate}}</th>
+           </tbody>
+       </table>
+</div>
+{% endblock %}

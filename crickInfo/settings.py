@@ -77,10 +77,11 @@ WSGI_APPLICATION = 'crickInfo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crickInfo',
-        'USER':'root',
-        'PASSWORD': '',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE':'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.crickInfo'),
+        #'USER':'root',
+        #'PASSWORD': '',
         'HOST':'',
         'PORT':'3306'
     }

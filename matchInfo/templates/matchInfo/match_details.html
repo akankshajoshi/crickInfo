@@ -1,0 +1,146 @@
+{% extends 'matchInfo/base.html' %}
+{% load my_tags %}
+
+{% block body %}
+<div class="mt-3">
+    <h2>{{ match_name }}</h2>
+    <br>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#menu1">{{ team1 }} Innings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#menu2">{{ team2 }} Innings</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="menu1" class="container tab-pane active"><br>
+            <h3>Batsman</h3>
+
+              <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Player</td>
+                        <td>Runs</td>
+                        <td>Balls</td>
+                        <td>Strike Rate</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in team1_performance_list %}
+                    <tr>
+                        <td><a href="/player/{{ item.player.id }}">{{ item.player }}</a></td>
+                        {% if item.total_balls_played > 0 %}
+                            <td>{{ item.total_runs_scored }}</td>
+                            <td>{{ item.total_balls_played }}</td>
+                            <td>{% get_strike_rate item.total_runs_scored item.total_balls_played %}</td>
+                        {% else %}
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        {% endif %}
+
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total</td>
+                        <td>{{ team1_dict.runs }}</td>
+                        <td>{{ team1_dict.balls }}</td>
+                    </tr>
+
+                </tbody>
+
+              </table>
+            <h3>Bowler</h3>
+              <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Player</td>
+                        <td>Overs</td>
+                        <td>Wickets</td>
+                        <td>Run Conceived</td>
+                        <td>Economy</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in team2_performance_list %}
+                    <tr>
+                        {% if item.total_balls_bowled > 0 %}
+                        <td><a href="/player/{{ item.player.id }}">{{ item.player }}</a></td>
+                        <td>{% get_overs item.total_balls_bowled %}</td>
+                        <td>{{ item.total_wickets_taken }}</td>
+                        <td>{{ item.total_run_conceived }}</td>
+                        <td>{% get_bowl_eco item.total_run_conceived item.total_balls_bowled %}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+              </table>
+        </div>
+        <div id="menu2" class="container tab-pane fade"><br>
+          <h3>Batsman</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Player</td>
+                        <td>Runs</td>
+                        <td>Balls</td>
+                        <td>Strike Rate</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in team2_performance_list %}
+                    <tr>
+                        <td><a href="/player/{{ item.player.id }}">{{ item.player }}</a></td>
+                        {% if item.total_balls_played > 0 %}
+                            <td>{{ item.total_runs_scored }}</td>
+                            <td>{{ item.total_balls_played }}</td>
+                            <td>{% get_strike_rate item.total_runs_scored item.total_balls_played %}</td>
+                        {% else %}
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        {% endif %}
+                    </tr>
+
+                    {% endfor %}
+                    <tr>
+                        <td>Total</td>
+                        <td>{{ team2_dict.runs }}</td>
+                        <td>{{ team2_dict.balls }}</td>
+                    </tr>
+                </tbody>
+            </table>
+          <h3>Bowler</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Player</td>
+                        <td>Overs</td>
+                        <td>Wickets</td>
+                        <td>Run Conceived</td>
+                        <td>Economy</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in team1_performance_list %}
+                    <tr>
+                        {% if item.total_balls_bowled > 0 %}
+                        <td><a href="/player/{{ item.player.id }}">{{ item.player }}</a></td>
+                        <td>{% get_overs item.total_balls_bowled %}</td>
+                        <td>{{ item.total_wickets_taken }}</td>
+                        <td>{{ item.total_run_conceived }}</td>
+                        <td>{% get_bowl_eco item.total_run_conceived item.total_balls_bowled %}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

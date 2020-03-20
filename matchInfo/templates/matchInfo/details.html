@@ -1,7 +1,7 @@
 {% extends 'matchInfo/base.html' %}
 {% block body %}
 
-<div class="container">
+<div class="">
     <div class="row">
          <div class="col-sm-3 col-md-2">
             <img src="{{ team.logo_uri.url }}" lenght="100" width="100">
@@ -15,12 +15,16 @@
     <div class="row mt-5 col-md-12">
 
         {% for player in team_players %}
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
-                <img src="{{ player.image_uri.url }}" length="40" width="150">
-                {{ player.first_name }}&nbsp;{{ player.last_name }}
+
+            <div class="col-sm-3">
+                <div class="col-md-12">
+                    <div class="figure">
+                        <a href="/player/{{ player.id }}" class="img figure-img img-fluid rounded" style="background-image:url({{ player.image_uri.url }});"></a>
+                        <figcaption class="figure-caption"><a href="/player/{{ player.id }}">{{ player.first_name }}&nbsp;{{ player.last_name }}</a></figcaption>
+                    </div>
+                </div>
             </div>
-          </div>
+
         {% endfor %}
 
     </div>
@@ -64,9 +68,8 @@
                 {% for match in past_matches %}
                   <tr>
                       <td>{{ match.match_date }}</td>
-                      <td>{{ match.name }}</td>
-                      <td>{{ match.winner }}</td>
-
+                      <td>{{ match.match_name }}</td>
+                      <td><a href="/match/{{ match.id }}/">{{ match.winner_team }}  won by {{ match.win_margin }} {{ match.win_type }}  </a></td>
                   </tr>
                 {% endfor %}
             </tbody>
